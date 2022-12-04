@@ -4,24 +4,34 @@ How do describe when don't know what is
 
 ## Local Development
 
+The following [just](https://just.systems/man/en/) recipes can be used to install the project, and run tests, linting and formatting tools.
+
 ### Install
 
-`just local`
+To install the project, it's dependencies and [pre-commit hooks](https://pre-commit.com/), run:
 
-### Run tests
+- `just local`
 
-`just test`
+### Test
 
-#### Run tests verbosely
+To run the test suite, run:
 
-`just test-v`
+- `just test`
 
-#### æ Check coverage
+verbosely:
 
-`just coverage`
+- `just test-v`
 
-### Run linting and code formatting checks
+To check the test coverage report, run:
 
-`just lint`
+- `just coverage`
 
-`just lint-fix`
+### Linting and code formatting
+
+To check the linting and code formatting, run:
+
+- `just lint`
+
+To fix it, run:
+
+- `just lint-fix`

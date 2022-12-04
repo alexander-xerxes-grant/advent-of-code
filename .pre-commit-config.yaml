@@ -23,7 +23,7 @@ repos:
         files: poetry.lock
     -   id: newline-check
         name: check files have final newlines
-        entry: make newline-check
+        entry: just newline-check
         language: system
     -   id: test
         name: test
