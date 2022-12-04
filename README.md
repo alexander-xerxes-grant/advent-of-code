@@ -35,3 +35,4 @@ To check the linting and code formatting, run:
 To fix it, run:
 
 - `just lint-fix`
+test

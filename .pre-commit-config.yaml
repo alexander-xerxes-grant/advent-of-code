@@ -25,6 +25,7 @@ repos:
         name: check files have final newlines
         entry: just newline-check
         language: system
+        files: (^pyproject\.toml|\.py)$
     -   id: test
         name: test
         entry: just test
