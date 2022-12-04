@@ -60,4 +60,4 @@ coverage:
 
 
 newline-check:
-		scripts/newline_check.sh
+		make newline-check
