@@ -4,35 +4,38 @@ How do describe when don't know what is
 
 ## Local Development
 
-The following [make] commands can be used to install the project for local development, and run tests, linting and formatting tools.
+The following [`just`](<https://just.systems/man/en/chapter_1.html>) recipes can be used to install the project for local development, and run tests, linting and formatting tools.
+
+To install `just`, run the following command:
+
+- ```brew install just```
 
 ### Install
 
 To install the project, it's dependencies and [pre-commit hooks](https://pre-commit.com/), run:
 
-- `make local`
+- `just local`
 
 ### Test
 
 To run the test suite, run:
 
-- `make test`
+- `just test`
 
 verbosely:
 
-- `make test-v`
+- `just test-v`
 
 To check the test coverage report, run:
 
-- `make coverage`
+- `just coverage`
 
 ### Linting and code formatting
 
 To check the linting and code formatting, run:
 
-- `make lint`
+- `just lint`
 
 To fix it, run:
 
-- `make lint-fix`
-test
+- `just lint-fix`

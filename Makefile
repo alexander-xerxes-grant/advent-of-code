@@ -1,6 +1,6 @@
-.PHONY: install local lint cfn-lint flake8 black black-fix isort isort-fix bandit safety test build lint-fix
+.PHONY: install local lint flake8 black black-fix isort isort-fix test lint-fix
 
-install: poetry-config
+install:
 	poetry env use 3.8.10
 	poetry install
 
@@ -29,12 +29,6 @@ isort:
 isort-fix:
 	poetry run isort .
 
-bandit:
-	poetry run bandit -r src -q -n 3
-
-safety:
-	poetry export -f requirements.txt | poetry run safety check --stdin
-
 newline-check:
 	scripts/newline_check.sh
 
@@ -59,5 +53,3 @@ test-v:
 
 coverage:
 		open reports/index.html
-
-

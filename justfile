@@ -1,5 +1,15 @@
 set positional-arguments
 
+install:
+	poetry env use 3.8.10
+	poetry install
+
+update:
+	poetry update
+
+local: install
+	poetry run pre-commit install
+
 flake8:
 	poetry run flake8
 
@@ -20,7 +30,7 @@ lint: flake8 black isort
 lint-fix: black-fix isort-fix
 
 newline-check *filepaths:
-    poetry run ./scripts/newline_check.sh
+    scripts/newline_check.sh
 
 test:
 	poetry run pytest \
@@ -40,3 +50,6 @@ test-v:
 		--cov-fail-under=95 \
 		--cov=src tests/unit_tests -ra -s \
 		-vv
+
+coverage:
+		open reports/index.html
