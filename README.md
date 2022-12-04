@@ -6,22 +6,22 @@ How do describe when don't know what is
 
 ### Install
 
-just local
+`just local`
 
 ### Run tests
 
-just test
+`just test`
 
 #### Run tests verbosely
 
-just test-v
+`just test-v`
 
-#### Check coverage
+#### æ Check coverage
 
-just coverage
+`just coverage`
 
-### Run linting
+### Run linting and code formatting checks
 
-just lint
+`just lint`
 
-just lint-fix
+`just lint-fix`
