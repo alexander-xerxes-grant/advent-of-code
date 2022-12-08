@@ -66,20 +66,16 @@ class TestCalculateCaloriesPerElf:
 
         assert list(split_elves) == [["123"], ["456", "789"]]
 
-    # def test_calculate_calories_per_elf(self, elf_calculator):
+    def test_calories_per_elf_returns_expected_list(self, elf_calculator):
 
-    #     # elves = "3\n5\n7\n"
-    #     # expected_max_calories = 15
-    #     # assert (
-    #     #     list(elf_calculator.calculate_calories_per_elf(elves))
-    #     #     == expected_max_calories
-    #     # )
+        elf = ["123", "456", "789"]
+        calories = elf_calculator.calories_per_elf(elf)
 
-    #     # Test the case where the input contains no elves.
-    #     elves = ""
-    #     split_elves =
-    #     expected_max_calories = 0
-    #     assert (
-    #         list(elf_calculator.calculate_calories_per_elf())
-    #         == expected_max_calories
-    #     )
+        assert calories == [123, 456, 789]
+
+    # def test_calculate_returns_expected_list(self, elf_calculator):
+
+    #     expected_calories = [123, 456, 789, 123, 456, 789]
+    #     calories = elf_calculator.calculate()
+
+    #     assert list(calories) == expected_calories

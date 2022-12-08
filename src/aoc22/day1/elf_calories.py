@@ -45,7 +45,12 @@ class CalculateCaloriesPerElf:
         elves_split = re.findall(r"\d+(?:\n\d+)*", elves)
         return (elf.split("\n") for elf in elves_split)
 
-    def calculate_calories_per_elf(self, filename) -> int:
+    def calories_per_elf(self, elf) -> int:
+
+        elf = [int(calorie) for calorie in elf]
+        return elf
+
+    def calculate(self) -> int:
         """Calculate the total calories carried by each elf.
 
         Args:
@@ -58,15 +63,15 @@ class CalculateCaloriesPerElf:
         """
         elves = self.parse_input(filename)
         for elf in self.split_elves(elves):
-            calories = [int(calorie) for calorie in elf]
+            calories = self.calories_per_elf(elf)
             yield sum(calories)
 
 
 def main():
     """Calculate the maximum calorie intake for all elves."""
     elf_calculator = CalculateCaloriesPerElf()
-    return max(elf_calculator.calculate_calories_per_elf())
+    return max(elf_calculator.calculate())
 
 
 if __name__ == "__main__":
-    main()
+    print(main())
