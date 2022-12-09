@@ -45,7 +45,7 @@ class CalculateCaloriesPerElf:
         elves_split = re.findall(r"\d+(?:\n\d+)*", elves)
         return (elf.split("\n") for elf in elves_split)
 
-    def calories_per_elf(self, elf) -> int:
+    def calories_per_elf(self, elf) -> Generator:
 
         elf = [int(calorie) for calorie in elf]
         return elf
