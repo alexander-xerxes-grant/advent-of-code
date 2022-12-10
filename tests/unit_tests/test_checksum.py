@@ -13,7 +13,7 @@
 
 import pytest
 
-from src.checksum import char_frequency, count_occurrences, open_file
+from src.aoc18.checksum import char_frequency, count_occurrences, open_file
 
 
 def test_open_file():

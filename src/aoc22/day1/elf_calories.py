@@ -70,7 +70,7 @@ class CalculateCaloriesPerElf:
 def main():
     """Calculate the maximum calorie intake for all elves."""
     elf_calculator = CalculateCaloriesPerElf()
-    return max(elf_calculator.calculate())
+    return sum(sorted(elf_calculator.calculate())[-3:])
 
 
 if __name__ == "__main__":

@@ -69,4 +69,4 @@ def execute(filepath) -> int:
     return count_pairs * count_triplets
 
 
-execute("input.txt")
+execute("src/aoc18/checksum_input.txt")
