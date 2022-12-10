@@ -1,18 +1,22 @@
-.PHONY: install local lint flake8 black black-fix isort isort-fix test lint-fix
+SHELL := /bin/bash
+
+DAY_LIST := $(shell seq -w 1 25)
+
+GENERATE_DAYS:= $(foreach DAY_NUM,$(DAY_LIST),gen$(DAY_NUM))
+
+SOLUTION_PARTS := $(foreach DAY,$(DAY_LIST),d$(DAY)p1 d$(DAY)p2)
+
+TESTS := $(foreach DAY_NUM,$(DAY_LIST),test$(DAY_NUM))
+TEST_PARTS := $(foreach TEST,$(TESTS),$(TEST)p1 $(TEST)p2)
+
+.PHONY: install $(GENERATE_DAYS) $(SOLUTIONS) $(TESTS) $(TEST_PARTS)
 
 install:
-	poetry env use 3.8.10
+	pyenv install "$(shell cat .python-version | xargs)" -s
+	poetry env use "python$(shell cat .python-version | xargs | cut -d'.' -f1-2)"
 	poetry install
 
-update:
-	poetry update
-
-local: install
-	poetry run pre-commit install
-
-lint: flake8 black isort newline-check
-
-lint-fix: black-fix isort-fix
+lint: flake8 black isort
 
 flake8:
 	poetry run flake8
@@ -29,17 +33,23 @@ isort:
 isort-fix:
 	poetry run isort .
 
-newline-check:
-	scripts/newline_check.sh
+bandit:
+	poetry run bandit -r src -q -n 3
 
-test:
-	poetry run pytest \
-		--cov-report term:skip-covered \
-		--cov-report html:reports \
-		--cov-report xml:reports/coverage.xml \
-		--junitxml=reports/unit_test_report.xml \
-		--cov-fail-under=95 \
-		--cov=src tests/unit_tests -ra -s
+safety:
+	poetry export -f requirements.txt | poetry run safety check --stdin
+
+$(GENERATE_DAYS):
+	@poetry run python -m utils.generate $(subst gen,,$@)
+
+$(SOLUTION_PARTS):
+	@poetry run python -m $(subst p,.solution,$(subst d,day,$@))
+
+$(TESTS):
+	@poetry run pytest $(subst test,day,$@) -ra -s
+
+$(TEST_PARTS):
+	@poetry run pytest $(subst p,/test_solution,$(subst test,day,$@)).py -ra -s
 
 test-v:
 	poetry run pytest \
