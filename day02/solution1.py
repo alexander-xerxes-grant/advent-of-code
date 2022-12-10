@@ -43,8 +43,16 @@ def strip_n_replace(input: Iterable[str]) -> List[Tuple[str, str]]:
     return [x.replace(" ", "") for x in split_input]
 
 
-def parse_input(input: Iterable[str]) -> List[Tuple[int, int]]:
+def parse_input(input: Iterable[str]) -> List[Tuple[str, str]]:
     return [(x[0], x[1]) for x in strip_n_replace(input)]
+
+
+def move_value(input: Iterable[str]) -> List[Tuple[int, int]]:
+    return [(moves[x], moves[y]) for x, y in parse_input(input)]
+
+
+def calculate_outcome(input: Iterable[str]) -> List[Tuple[str, int]]:
+    return None
 
 
 # Use the following line instead if the input is a single line
