@@ -10,68 +10,32 @@ from utils.read import read_file_iter
 # (0 for loss, 3 for draw, and 6 for win).
 # Finally, add up the scores for all of the rounds to get the final score.
 
-# 1. Parse the strategy guide to determine the actions for each player in each round.
-# 2. Determine the outcome of each round (win, loss, or draw) based on the actions of both players.
-# 3. Calculate the score for each round by adding the score for the action and the score for the outcome.
-# 4. Add up the scores for all of the rounds to get the final score.
+# I decided to change the moves dict values to 0, 1 and 2 for rock, paper,
+# and scissors respectively. This way I can use the modulus operator to
+# determine the outcome of the round.
+# if the player wins, the outcome will be 1,
+# if it is a draw, the outcome will be 0
+# if the player loses, the outcome will be 2
+
 
 moves = {
-    "A": 1,
-    "B": 2,
-    "C": 3,
-    "X": 1,
-    "Y": 2,
-    "Z": 3,
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "X": 0,
+    "Y": 1,
+    "Z": 2,
 }
 
-move_outcomes = {
-    "A X": 3,
-    "A Y": 0,
-    "A Z": 6,
-    "B X": 6,
-    "B Y": 3,
-    "B Z": 0,
-    "C X": 0,
-    "C Y": 6,
-    "C Z": 3,
-}
+# The points for each move: rock, paper, scissors respectively
+scores = [1, 2, 3]
 
 
-outcomes = {
-    "Win": 6,
-    "Draw": 3,
-    "Loss": 0,
-}
+def parse_input(input: str) -> List[Tuple[str, str]]:
+    moves_list = [tuple(i.split()) for i in input.split(", ")]
+    return moves_list
 
 
-def strip_n_replace(input: Iterable[str]) -> List[Tuple[str, str]]:
-    split_input = input.split(",")
-    return [x.replace(" ", "") for x in split_input]
-
-
-def parse_input(input: Iterable[str]) -> List[Tuple[str, str]]:
-    return [(x[0], x[1]) for x in strip_n_replace(input)]
-
-
-def move_value(input: Iterable[str]) -> List[Tuple[int, int]]:
-    return [(moves[x], moves[y]) for x, y in parse_input(input)]
-
-
-def determine_outcome(move1: str, move2: str) -> str:
-    key = move1 + " " + move2
-    return move_outcomes[key]
-
-
-# Use the following line instead if the input is a single line
-# def solver(input: str) -> str:
-def solver(input: Iterable[str]) -> str:
-    return "the answer"
-
-
-if __name__ == "__main__":
-    input_path = Path(__file__).parent / "input.txt"
-    input_iter = read_file_iter(input_path)
-
-    # Use the following line instead if the input is a single line
-    # print(solver(next(input_iter)), end="")
-    print(solver(input_iter), end="")
+def map_moves(moves_list: List[Tuple[str, str]]) -> List[Tuple[int, int]]:
+    moves_list = parse_input(moves_list)
+    return [(moves[opp], moves[plr]) for (opp, plr) in moves_list]
