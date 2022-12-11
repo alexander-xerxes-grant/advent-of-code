@@ -1,4 +1,4 @@
-# sre-pairing
+# Advent Of Code
 
 How do describe when don't know what is
 
