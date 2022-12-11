@@ -25,9 +25,15 @@ moves = {
 }
 
 move_outcomes = {
-    4: "Win",
-    2: "Draw",
-    3: "Loss",
+    "A X": 3,
+    "A Y": 0,
+    "A Z": 6,
+    "B X": 6,
+    "B Y": 3,
+    "B Z": 0,
+    "C X": 0,
+    "C Y": 6,
+    "C Z": 3,
 }
 
 
@@ -51,8 +57,9 @@ def move_value(input: Iterable[str]) -> List[Tuple[int, int]]:
     return [(moves[x], moves[y]) for x, y in parse_input(input)]
 
 
-def calculate_outcome(input: Iterable[str]) -> List[Tuple[str, int]]:
-    return None
+def determine_outcome(move1: str, move2: str) -> str:
+    key = move1 + " " + move2
+    return move_outcomes[key]
 
 
 # Use the following line instead if the input is a single line
