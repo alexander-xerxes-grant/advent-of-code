@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Iterable, List, Tuple
+from typing import List, Tuple
 
 from utils.read import read_file_iter
 
@@ -31,11 +31,35 @@ moves = {
 scores = [1, 2, 3]
 
 
-def parse_input(input: str) -> List[Tuple[str, str]]:
-    moves_list = [tuple(i.split()) for i in input.split(", ")]
-    return moves_list
+def parse_input(input: str) -> List[Tuple[int, int]]:
+    opponent, player = [moves[i] for i in input.split()]
+    return (opponent, player)
 
 
-def map_moves(moves_list: List[Tuple[str, str]]) -> List[Tuple[int, int]]:
-    moves_list = parse_input(moves_list)
-    return [(moves[opp], moves[plr]) for (opp, plr) in moves_list]
+def calculate_outcome(opponent: int, player: int) -> int:
+    if (player - opponent) % 3 == 1:
+        return 6
+    elif player == opponent:
+        return 3
+
+    return 0
+
+
+def solver(input: str) -> int:
+    total_score = 0
+    for line in input:
+        opponent, player = parse_input(line)
+
+        total_score += calculate_outcome(opponent, player)
+        total_score += scores[player]
+
+    return total_score
+
+
+if __name__ == "__main__":
+    input_path = Path(__file__).parent / "input.txt"
+    input_iter = read_file_iter(input_path)
+
+    # Use the following line instead if the input is a single line
+    # print(solver(next(input_iter)), end="")
+    print(solver(input_iter), end="")
