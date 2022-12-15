@@ -28,9 +28,13 @@ outcomes = {"X": 0, "Y": 3, "Z": 6}
 scores = [1, 2, 3]
 
 
-def calculate(input):
-    opponent, player = [i for i in input.split()]
-    return outcomes[player]
+def player_move(opponent, outcome):
+    pass
+
+
+# def calculate(input):
+#     opponent, outcome = [i for i in input.split()]
+#     return outcomes[outcome] + scores[moves[opponent]]
 
 
 # Use the following line instead if the input is a single line
