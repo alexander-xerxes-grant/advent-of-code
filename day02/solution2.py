@@ -1,7 +1,36 @@
 from pathlib import Path
 from typing import Iterable
 
+
 from utils.read import read_file_iter
+
+# X = "Lose"
+# Y = "Draw"
+# Z = "Win"
+
+
+# A Y
+# B X
+# C Z --> 12
+
+moves = {
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "X": 0,
+    "Y": 1,
+    "Z": 2,
+}
+
+outcomes = {"X": 0, "Y": 3, "Z": 6}
+
+# The points for each move: rock, paper, scissors respectively
+scores = [1, 2, 3]
+
+
+def calculate(input):
+    opponent, player = [i for i in input.split()]
+    return outcomes[player]
 
 
 # Use the following line instead if the input is a single line

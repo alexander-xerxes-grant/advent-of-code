@@ -1,5 +1,5 @@
-from . import solution2
+from day02.solution2 import calculate
 
 
-def test_solution2():
-    assert solution2.solver([]) == "the other answer"
+def test_calculate():
+    assert calculate("A Y") == 3
