@@ -4,24 +4,27 @@ from typing import Iterable, Tuple
 from utils.read import read_file_iter
 
 
-def parse_input(input: str):
-    ranges = input.split(",")
-    tuples = []
-    for _range in ranges:
-        for start, end in [_range.split("-")]:
-            tuples.append((int(start), int(end)))
-    return tuples
+def parse_input(line: str):
+    elves = line.split(",")
+    ranges = [list(map(int, elf.split("-"))) for elf in elves]
+    return ranges
 
 
-def construct_ranges(ranges: Iterable[Tuple[int, int]]):
-    _range_1, _range_2 = [range(_range[0], _range[1]) for _range in ranges]
-    return _range_1, _range_2
+def check_range_in_range(ranges):
+    a, b = ranges[0]
+    x, y = ranges[1]
+    return 1 if a <= x and b >= y or a >= x and b <= y else 0
 
 
 # Use the following line instead if the input is a single line
 # def solver(input: str) -> str:
 def solver(input: Iterable[str]) -> str:
-    return "the answer"
+    count = 0
+    for line in input:
+        ranges = parse_input(line)
+        count += check_range_in_range(ranges)
+
+    return count
 
 
 if __name__ == "__main__":

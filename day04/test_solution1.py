@@ -1,19 +1,26 @@
-from day04.solution1 import parse_input, construct_ranges
-
-# 2-4,6-8
-# 2-3,4-5
-# 5-7,7-9
-# 2-8,3-7
-# 6-6,4-6
-# 2-6,4-8
+from day04.solution1 import parse_input, check_range_in_range, solver
 
 
 def test_parse_input():
-    assert parse_input("2-4,6-8") == [(2, 4), (6, 8)]
-    assert parse_input("2-3, 4-5") == [(2, 3), (4, 5)]
+    assert parse_input("2-4, 6-8") == [[2, 4], [6, 8]]
+    assert parse_input("2-3, 4-5") == [[2, 3], [4, 5]]
 
 
-def test_construct_ranges():
-    assert construct_ranges([(2, 3), (0, 4)]) == (range(2, 3), range(0, 4))
-    assert construct_ranges([(2, 4), (6, 8)]) == (range(2, 4), range(6, 8))
-    assert construct_ranges([(2, 3), (4, 5)]) == (range(2, 3), range(4, 5))
+def test_check_range_in_range():
+    assert check_range_in_range([[2, 4], [6, 8]]) == 0
+    assert check_range_in_range([[2, 3], [0, 5]]) == 1
+    assert check_range_in_range([[10, 15], [9, 16]]) == 1
+
+
+def test_solver():
+    assert (
+        solver(
+            [
+                "2-4, 6-8",
+                "2-3, 1-5",
+                "5-7, 1-9",
+            ]
+        )
+        == 2
+    )
+    assert solver(["2-4, 6-8", "2-3, 4-5"]) == 0
