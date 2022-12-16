@@ -13,7 +13,7 @@ def parse_input(input: str):
     return tuples
 
 
-def construct_ranges(ranges: Iterable[Tuple[int, int]]) -> int:
+def construct_ranges(ranges: Iterable[Tuple[int, int]]):
     _range_1, _range_2 = [range(_range[0], _range[1]) for _range in ranges]
     return _range_1, _range_2
 
