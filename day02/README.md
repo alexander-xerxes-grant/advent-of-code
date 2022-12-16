@@ -41,7 +41,3 @@ In the third round, you will defeat your opponent's Scissors with Rock for a sco
 Now that you're correctly decrypting the ultra top secret strategy guide, you would get a total score of 12.
 
 Following the Elf's instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?
-
-A Y  = opp: 0 outcome 1 = 1 - 0 =  1 % 3  = 1 = return 3 + 1 = 4
-B X = opp: 1 outcome 0 = 0 - 1 = -1 % 3  = 2 = return 1 + 0 = 1
-C Z = opp: 2 outcome 6 = 6 - 2 = 4 % 3 = 1 = return 1 + 6 = 7
