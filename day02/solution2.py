@@ -47,8 +47,14 @@ def calculate_score(opponent: int, outcome: int) -> int:
 
 # Use the following line instead if the input is a single line
 # def solver(input: str) -> str:
-def solver(input: Iterable[str]) -> str:
-    return "the other answer"
+def solver_2(input: Iterable[str]) -> str:
+    total_score = 0
+    for line in input:
+        opponent, player = parse_input(line)
+
+        total_score += calculate_score(opponent, player)
+
+    return total_score
 
 
 if __name__ == "__main__":
@@ -57,4 +63,4 @@ if __name__ == "__main__":
 
     # Use the following line instead if the input is a single line
     # print(solver(next(input_iter)), end="")
-    print(solver(input_iter), end="")
+    print(solver_2(input_iter), end="")
