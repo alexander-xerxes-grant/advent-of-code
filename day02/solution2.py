@@ -17,19 +17,19 @@ moves = {
     "A": 0,
     "B": 1,
     "C": 2,
-    "X": 0,
-    "Y": 1,
-    "Z": 2,
+    "X": -1,
+    "Y": 0,
+    "Z": 1,
 }
 
-outcomes = {"X": 0, "Y": 3, "Z": 6}
 
 # The points for each move: rock, paper, scissors respectively
 scores = [1, 2, 3]
 
 
-def player_move(opponent, outcome):
-    pass
+def parse_input(input):
+    opponent, player = [moves[i] for i in input.split()]
+    return (opponent, player)
 
 
 # def calculate(input):
