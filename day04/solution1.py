@@ -1,7 +1,21 @@
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Tuple
 
 from utils.read import read_file_iter
+
+
+def parse_input(input: str):
+    ranges = input.split(",")
+    tuples = []
+    for _range in ranges:
+        for start, end in [_range.split("-")]:
+            tuples.append((int(start), int(end)))
+    return tuples
+
+
+def construct_ranges(ranges: Iterable[Tuple[int, int]]) -> int:
+    _range_1, _range_2 = [range(_range[0], _range[1]) for _range in ranges]
+    return _range_1, _range_2
 
 
 # Use the following line instead if the input is a single line
