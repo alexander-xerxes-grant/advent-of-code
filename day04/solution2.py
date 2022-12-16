@@ -4,10 +4,27 @@ from typing import Iterable
 from utils.read import read_file_iter
 
 
+def parse_input(line: str):
+    elves = line.split(",")
+    ranges = [list(map(int, elf.split("-"))) for elf in elves]
+    return ranges
+
+
+def check_range_overlaps(ranges):
+    a, b = ranges[0]
+    x, y = ranges[1]
+    return 1 if b >= x and a <= y else 0
+
+
 # Use the following line instead if the input is a single line
 # def solver(input: str) -> str:
 def solver(input: Iterable[str]) -> str:
-    return "the other answer"
+    count = 0
+    for line in input:
+        ranges = parse_input(line)
+        count += check_range_overlaps(ranges)
+
+    return count
 
 
 if __name__ == "__main__":
