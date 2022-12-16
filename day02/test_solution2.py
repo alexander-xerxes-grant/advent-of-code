@@ -1,4 +1,4 @@
-from day02.solution2 import parse_input
+from day02.solution2 import parse_input, calculate_score
 
 
 # def test_calculate():
@@ -12,6 +12,12 @@ from day02.solution2 import parse_input
 
 
 def test_parse_input():
-    assert parse_input("A X") == (0, -1)
-    assert parse_input("B Y") == (1, 0)
+    assert parse_input("A Y") == (0, 0)
+    assert parse_input("B X") == (1, -1)
     assert parse_input("C Z") == (2, 1)
+
+
+def test_calculate_score():
+    assert calculate_score(0, 0) == 4
+    assert calculate_score(1, -1) == 1
+    assert calculate_score(2, 1) == 7
