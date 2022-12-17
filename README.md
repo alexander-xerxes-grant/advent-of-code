@@ -1,43 +1,106 @@
-# Advent Of Code
+# Advent of Code
 
-How do describe when don't know what is
+This repository contains my solutions to the [Advent of Code](https://adventofcode.com/) puzzles.
 
-## Local Development
+# How to use this repo
 
--- I couldn't get just to work properly (:c so for now just use 'make')
+## Install dependencies
 
-The following [`just`](<https://just.systems/man/en/chapter_1.html>) recipes can be used to install the project for local development, and run tests, linting and formatting tools.
+```shell
+make install
+```
 
-To install `just`, run the following command:
+## Start a new day's puzzles
 
-- ```brew install just```
+```shell
+$ make gen01
 
-### Install
+Created directory: day01
+Created file: day01/__init__.py
+Created file: day01/input.txt
+Created file: day01/solution1.py
+Created file: day01/solution2.py
+Created file: day01/test_solution1.py
+Created file: day01/test_solution2.py
+```
 
-To install the project, it's dependencies and [pre-commit hooks](https://pre-commit.com/), run:
+## Using the input file
 
-- `just local`
+It is recommended that your download the input file directly to the day's
+folder, overwriting the `input.txt` file that's already there.
 
-### Test
+## Running tests
 
-To run the test suite, run:
+### All tests for a given day
 
-- `just test`
+```shell
+$ make test01
+...
+collected 2 items
 
-verbosely:
+day01/test_solution1.py .
+day01/test_solution2.py .
+```
 
-- `just test-v`
+### One part for a given day
 
-To check the test coverage report, run:
+```shell
+$ make test01p1
+...
+collected 1 item
 
-- `just coverage`
+day01/test_solution1.py .
+```
 
-### Linting and code formatting
+## Running your solutions
 
-To check the linting and code formatting, run:
+```shell
+$ make d01p1
+the answer
 
-- `just lint`
+$ make d01p2
+the other answer
+```
 
-To fix it, run:
+## Handling single-line puzzle inputs
 
-- `just lint-fix`
+The template is set up to handle multi-line inputs by default. To handle
+single-line inputs, simply edit as per the following diff
+
+```diff
+@@ -5,8 +5,7 @@ from utils.read import read_file_iter
+
+ # Use the following line instead if the input is a single line
+-# def solver(input: str) -> str:
+-def solver(input: Iterable[str]) -> str:
++def solver(input: str) -> str:
+     return "the answer"
+
+@@ -15,5 +14,4 @@ if __name__ == "__main__":
+     input_iter = read_file_iter(input_path)
+
+     # Use the following line instead if the input is a single line
+-    # print(solver(next(input_iter)), end="")
+-    print(solver(input_iter), end="")
++    print(solver(next(input_iter)), end="")
+```
+
+## Handling multi-line puzzle inputs
+
+Multi-line inputs is the default - no changes are required in order to
+make this work. However, do note that the input is passed in as a generator.
+If you need to iterate over the input multiple times, it is advisable to
+first assign a local variable, such as a list, to store the input lines, eg
+
+```python
+def solver(input: Iterable[str]) -> str:
+    input_lines = list(input)
+    ...
+```
+
+## Inputting your answer
+
+Mac users can copy the result to the clipboard using
+
+```shell
+$ make d01p1 | pbcopy
