@@ -8,6 +8,8 @@ from day05.solution1 import (
     create_indexes,
     fill_stacks,
     parse_instructions,
+    crane,
+    solver,
 )
 
 
@@ -56,3 +58,24 @@ def test_parse_instructions():
         (2, 2, 1),
         (1, 1, 2),
     ]
+
+
+def test_crane():
+    filepath = Path(__file__).parent / "test_input.txt"
+    stacks, instructions = parse_input(filepath)
+
+    assert crane(stacks, instructions) == {
+        1: ["C"],
+        2: ["M"],
+        3: ["P", "D", "N", "Z"],
+    }
+
+
+def test_solver():
+    filled_stack_dict = {
+        1: ["C"],
+        2: ["M"],
+        3: ["P", "D", "N", "Z"],
+    }
+
+    assert solver(filled_stack_dict) == "CMZ"

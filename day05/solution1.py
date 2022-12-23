@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-filepath = Path(__file__).parent / "test_input.txt"
+filepath = Path(__file__).parent / "input.txt"
 
 
 def parse_input(filepath):
@@ -46,25 +46,29 @@ def parse_instructions(instructions):
     return parsed_instructions
 
 
-# stacks, instructions = parse_stacks_instructions(read_file(filepath))
-# stack_dict = create_dict_of_stacks(stacks)
-# indexes = create_indexes(stacks)
-# # stack_dict = fill_stacks(stacks, stack_dict)``
+def crane(stacks, instructions):
+    instructions = parse_instructions(instructions)
+    stack_dict = create_dict_of_stacks(stacks)
+    filled_stack_dict = fill_stacks(stacks, stack_dict)
 
-# print("\nStacks", stacks)
-# print("\nInstructions", instructions)
-# print("\nIndexes", indexes)
-# print("\nStack Dict", stack_dict)
+    for instruction in instructions:
 
-# Use the following line instead if the input is a single line
-# def solver(input: str) -> str:
-# def solver(input: Iterable[str]) -> str:
+        crate_num, from_stack, to_stack = instruction
+
+        for crate in range(crate_num):
+            removed_crate = filled_stack_dict[from_stack].pop()
+            filled_stack_dict[to_stack].append(removed_crate)
+
+    return filled_stack_dict
 
 
-# if __name__ == "__main__":
-#     input_path = Path(__file__).parent / "input.txt"
-#     input_iter = read_file_iter(input_path)
+def solver(filled_stack_dict):
 
-#     # Use the following line instead if the input is a single line
-#     # print(solver(next(input_iter)), end="")
-#     print(solver(input_iter), end="")
+    return "".join(stack[-1] for stack in filled_stack_dict.values())
+
+
+if __name__ == "__main__":
+    stack_strings, instructions = parse_input(filepath)
+    filled_stack_dict = crane(stack_strings, instructions)
+
+    print(solver(filled_stack_dict))
