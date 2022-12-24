@@ -1,29 +1,30 @@
 from pathlib import Path
-from typing import Iterable
+from typing import Tuple, List, Dict
 
 
 filepath = Path(__file__).parent / "input.txt"
 
 
-def parse_input(filepath):
+def parse_input(filepath: str) -> Tuple[List[str], List[str]]:
     with open(filepath) as f:
         stack_list, instructions_list = (
             i.splitlines() for i in f.read().strip("\n").split("\n\n")
         )
+
     return stack_list, instructions_list
 
 
-def create_dict_of_stacks(stacks):
-    stack_dict = {int(digit): [] for digit in stacks[-1].replace(" ", "")}
-    return stack_dict
+def create_dict_of_stacks(stacks: List[str]) -> Dict[int, List[str]]:
+    return {int(digit): [] for digit in stacks[-1].replace(" ", "")}
 
 
-def create_indexes(stack_strings):
-    indexes = [i for i, char in enumerate(stack_strings[-1]) if char != " "]
-    return indexes
+def create_indexes(stacks: List[str]) -> List[int]:
+    return [i for i, char in enumerate(stacks[-1]) if char != " "]
 
 
-def fill_stacks(stacks, stack_dict):
+def fill_stacks(
+    stacks: List[str], stack_dict: Dict[int, List[str]]
+) -> Dict[int, List[str]]:
     indexes = create_indexes(stacks)
 
     for string in stacks[:-1]:
@@ -32,17 +33,22 @@ def fill_stacks(stacks, stack_dict):
             if string[i] != " ":
                 stack_dict[stack_num].insert(0, string[i])
             stack_num += 1
+
     return stack_dict
 
 
-def parse_instructions_list(instructions_list):
+def parse_instructions_list(
+    instructions_list: List[str],
+) -> List[Tuple[int, int, int]]:
     parsed_instructions_list = []
+
     for instruction in instructions_list:
         words = instruction.split()
         crate_num = int(words[1])
         from_stack = int(words[3])
         to_stack = int(words[5])
         parsed_instructions_list.append((crate_num, from_stack, to_stack))
+
     return parsed_instructions_list
 
 
