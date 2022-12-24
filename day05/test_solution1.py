@@ -3,12 +3,12 @@ from pathlib import Path
 import pytest
 
 from day05.solution1 import (
-    parse_input,
+    crane,
     create_dict_of_stacks,
     create_indexes,
     fill_stacks,
+    parse_input,
     parse_instructions,
-    crane,
     solver,
 )
 
