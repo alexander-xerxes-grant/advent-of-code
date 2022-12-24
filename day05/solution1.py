@@ -46,6 +46,16 @@ def parse_instructions_list(instructions_list):
     return parsed_instructions_list
 
 
+def move_crate(instruction, filled_stack_dict):
+    crate_num, from_stack, to_stack = instruction
+
+    for crate in range(crate_num):
+        removed_crate = filled_stack_dict[from_stack].pop()
+        filled_stack_dict[to_stack].append(removed_crate)
+
+    return filled_stack_dict
+
+
 def crane(stacks, instructions_list):
     instructions_list = parse_instructions_list(instructions_list)
     stack_dict = create_dict_of_stacks(stacks)
@@ -53,11 +63,7 @@ def crane(stacks, instructions_list):
 
     for instruction in instructions_list:
 
-        crate_num, from_stack, to_stack = instruction
-
-        for crate in range(crate_num):
-            removed_crate = filled_stack_dict[from_stack].pop()
-            filled_stack_dict[to_stack].append(removed_crate)
+        filled_stack_dict = move_crate(instruction, filled_stack_dict)
 
     return filled_stack_dict
 
