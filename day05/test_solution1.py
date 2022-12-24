@@ -10,6 +10,7 @@ from day05.solution1 import (
     parse_input,
     parse_instructions_list,
     solver,
+    move_crate,
 )
 
 
@@ -58,6 +59,21 @@ def test_parse_instructions_list():
         (2, 2, 1),
         (1, 1, 2),
     ]
+
+
+def test_move_crate():
+    instruction = (1, 2, 1)
+    filled_stack_dict = {
+        1: ["C"],
+        2: ["M"],
+        3: ["P", "D", "N", "Z"],
+    }
+
+    assert move_crate(instruction, filled_stack_dict) == {
+        1: ["C", "M"],
+        2: [],
+        3: ["P", "D", "N", "Z"],
+    }
 
 
 def test_crane():

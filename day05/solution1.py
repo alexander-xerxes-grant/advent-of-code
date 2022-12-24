@@ -18,8 +18,8 @@ def create_dict_of_stacks(stacks):
     return stack_dict
 
 
-def create_indexes(stacks):
-    indexes = [i for i, char in enumerate(stacks[-1]) if char != " "]
+def create_indexes(stack_strings):
+    indexes = [i for i, char in enumerate(stack_strings[-1]) if char != " "]
     return indexes
 
 
