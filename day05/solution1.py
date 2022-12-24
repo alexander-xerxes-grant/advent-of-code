@@ -7,10 +7,10 @@ filepath = Path(__file__).parent / "input.txt"
 
 def parse_input(filepath):
     with open(filepath) as f:
-        stack_strings, instructions = (
+        stack_list, instructions_list = (
             i.splitlines() for i in f.read().strip("\n").split("\n\n")
         )
-    return stack_strings, instructions
+    return stack_list, instructions_list
 
 
 def create_dict_of_stacks(stacks):
@@ -35,23 +35,23 @@ def fill_stacks(stacks, stack_dict):
     return stack_dict
 
 
-def parse_instructions(instructions):
-    parsed_instructions = []
-    for instruction in instructions:
+def parse_instructions_list(instructions_list):
+    parsed_instructions_list = []
+    for instruction in instructions_list:
         words = instruction.split()
         crate_num = int(words[1])
         from_stack = int(words[3])
         to_stack = int(words[5])
-        parsed_instructions.append((crate_num, from_stack, to_stack))
-    return parsed_instructions
+        parsed_instructions_list.append((crate_num, from_stack, to_stack))
+    return parsed_instructions_list
 
 
-def crane(stacks, instructions):
-    instructions = parse_instructions(instructions)
+def crane(stacks, instructions_list):
+    instructions_list = parse_instructions_list(instructions_list)
     stack_dict = create_dict_of_stacks(stacks)
     filled_stack_dict = fill_stacks(stacks, stack_dict)
 
-    for instruction in instructions:
+    for instruction in instructions_list:
 
         crate_num, from_stack, to_stack = instruction
 
@@ -68,7 +68,7 @@ def solver(filled_stack_dict):
 
 
 if __name__ == "__main__":
-    stack_strings, instructions = parse_input(filepath)
-    filled_stack_dict = crane(stack_strings, instructions)
+    stack_list, instructions_list = parse_input(filepath)
+    filled_stack_dict = crane(stack_list, instructions_list)
 
     print(solver(filled_stack_dict))

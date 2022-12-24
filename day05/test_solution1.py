@@ -8,7 +8,7 @@ from day05.solution1 import (
     create_indexes,
     fill_stacks,
     parse_input,
-    parse_instructions,
+    parse_instructions_list,
     solver,
 )
 
@@ -49,10 +49,10 @@ def test_fill_stacks():
     }
 
 
-def test_parse_instructions():
+def test_parse_instructions_list():
     filepath = Path(__file__).parent / "test_input.txt"
     _, instructions = parse_input(filepath)
-    assert parse_instructions(instructions) == [
+    assert parse_instructions_list(instructions) == [
         (1, 2, 1),
         (3, 1, 3),
         (2, 2, 1),
