@@ -4,15 +4,13 @@ from typing import Iterable
 from utils.read import read_file_iter
 
 
-def get_unique_letters(input):
-    sequence = list(input)
-    seen = set()
-    return [x for x in sequence if not (x in seen or seen.add(x))]
-
-
 # # Use the following line instead if the input is a single line
 # # def solver(input: str) -> str:
 # def solver(input: Iterable[str]) -> str:
+
+
+def get_last_4_char(input: str, n) -> str:
+    return input[n - 4 : n]
 
 
 if __name__ == "__main__":
