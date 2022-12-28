@@ -1,6 +1,6 @@
-# sre-pairing
+# Advent of Code
 
-How do describe when don't know what is
+A repo for keeping my Advent of Code solutions in
 
 ## Local Development
 
