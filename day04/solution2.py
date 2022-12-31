@@ -1,13 +1,6 @@
-from pathlib import Path
 from typing import Iterable
 
-from utils.read import read_file_iter
-
-
-def parse_input(line: str):
-    elves = line.split(",")
-    ranges = [list(map(int, elf.split("-"))) for elf in elves]
-    return ranges
+from day04.parser import parse_input
 
 
 def check_range_overlaps(ranges):
@@ -16,9 +9,7 @@ def check_range_overlaps(ranges):
     return 1 if b >= x and a <= y else 0
 
 
-# Use the following line instead if the input is a single line
-# def solver(input: str) -> str:
-def solver(input: Iterable[str]) -> str:
+def solve(input: Iterable[str]) -> str:
     count = 0
     for line in input:
         ranges = parse_input(line)
@@ -28,9 +19,6 @@ def solver(input: Iterable[str]) -> str:
 
 
 if __name__ == "__main__":
-    input_path = Path(__file__).parent / "input.txt"
-    input_iter = read_file_iter(input_path)
+    from shared import run_solver
 
-    # Use the following line instead if the input is a single line
-    # print(solver(next(input_iter)), end="")
-    print(solver(input_iter), end="")
+    run_solver(solve, __file__)
