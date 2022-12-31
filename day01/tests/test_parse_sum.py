@@ -1,4 +1,4 @@
-from day01.solution1 import parse_input, sum_per_elf, solver
+from ..parse_sum import parse_input, sum_per_elf
 
 
 def test_parse_input():
@@ -15,8 +15,3 @@ def test_parse_input():
 def test_sum_per_elf():
     assert list(sum_per_elf(["1", "69", "420", "", "66"])) == [490, 66]
     assert list(sum_per_elf(["1", "", "69", "420", "66", ""])) == [1, 555]
-
-
-def test_solver():
-    assert solver(["1", "69", "420", "", "66"]) == 490
-    assert solver(["1", "", "69", "420", "66", ""]) == 555
