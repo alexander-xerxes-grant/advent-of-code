@@ -1,8 +1,8 @@
 import pytest
 from shared import get_input
 
-from .. import solution2
-from ..solution2 import solver
+from day01 import solution2
+from day01.solution2 import solve
 
 
 class TestSolution:
@@ -10,7 +10,7 @@ class TestSolution:
     def input(self):
         yield get_input(solution2.__file__, "tests/test_input.txt")
 
-    def test_solver(self, input):
-        solution = solver(input)
+    def test_solve(self, input):
+        solution = solve(input)
 
         assert solution == 45000

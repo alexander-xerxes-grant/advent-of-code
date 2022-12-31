@@ -1,7 +1,4 @@
-from pathlib import Path
 from typing import List, Tuple
-
-from utils.read import read_file_iter
 
 # To solve this you need to parse the strategy guide to determine what the actions of each player
 # will be. Then for each round you will need to determine the outcome (W, L, or D) of the round.
