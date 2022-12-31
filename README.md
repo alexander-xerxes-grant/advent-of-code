@@ -1,43 +1,94 @@
 # Advent of Code
 
-A repo for keeping my Advent of Code solutions in
 
-## Local Development
+My repository for Advent of Code 2022 solutions.
 
--- I couldn't get just to work properly (:c so for now just use 'make')
 
-The following [`just`](<https://just.systems/man/en/chapter_1.html>) recipes can be used to install the project for local development, and run tests, linting and formatting tools.
+# Instructions
 
-To install `just`, run the following command:
+Requires
 
-- ```brew install just```
+- Python 3.8
+- [Poetry](https://github.com/python-poetry/poetry)
+- [Just](https://github.com/casey/just)
 
-### Install
+## 1. Install dependencies
 
-To install the project, it's dependencies and [pre-commit hooks](https://pre-commit.com/), run:
+Using `just`:
 
-- `just local`
+```shell
+just install
+```
 
-### Test
+## 2. Add inputs and test inputs
 
-To run the test suite, run:
+Edit `../day01/tests/test_input.txt` and `../day01/input.txt`.
 
-- `just test`
+## 3. Write some code
 
-verbosely:
+Start at `../day01/solution1.py`.
 
-- `just test-v`
+## 4. Run the tests
 
-To check the test coverage report, run:
+To run the tests for only the first solution of day 1:
 
-- `just coverage`
+```shell
+just test 1 1
+```
 
-### Linting and code formatting
+To run for both solutions:
 
-To check the linting and code formatting, run:
+```shell
+just test 1
+```
 
-- `just lint`
+## 5. Run the solution
 
-To fix it, run:
+To run the solution for day 1 part 1:
 
-- `just lint-fix`
+```shell
+just day 1 1
+```
+
+## 6. Other useful commands
+
+### Linting
+
+```shell
+just flake8
+just black
+just isort
+```
+
+Or run all three via
+
+```shell
+just lint
+```
+
+### Automated linting fixes
+
+```shell
+just black-fix
+just isort-fix
+```
+
+Or run both via
+
+```shell
+just lint-fix
+```
+
+### Other
+
+Static checking via `bandit`
+
+```shell
+just bandit
+```
+
+Check dependencies against the `safety` database of known vulnerabilities
+
+```shell
+just safety
+```
