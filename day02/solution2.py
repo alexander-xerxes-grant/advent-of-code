@@ -1,8 +1,4 @@
-from pathlib import Path
-from typing import Iterable
-
-
-from utils.read import read_file_iter
+from typing import Iterable, Tuple
 
 # X = "Lose"
 # Y = "Draw"
@@ -33,7 +29,7 @@ moves = {
 scores = [1, 2, 3]
 
 
-def parse_input(input):
+def parse_input(input: str) -> Tuple[int, int]:
     opponent, outcome = [moves[i] for i in input.split()]
     return (opponent, outcome)
 
@@ -45,9 +41,7 @@ def calculate_score(opponent: int, outcome: int) -> int:
     return score
 
 
-# Use the following line instead if the input is a single line
-# def solver(input: str) -> str:
-def solver_2(input: Iterable[str]) -> str:
+def solve(input: Iterable[str]) -> str:
     total_score = 0
     for line in input:
         opponent, player = parse_input(line)
@@ -58,9 +52,6 @@ def solver_2(input: Iterable[str]) -> str:
 
 
 if __name__ == "__main__":
-    input_path = Path(__file__).parent / "input.txt"
-    input_iter = read_file_iter(input_path)
+    from shared import run_solver
 
-    # Use the following line instead if the input is a single line
-    # print(solver(next(input_iter)), end="")
-    print(solver_2(input_iter), end="")
+    run_solver(solve, __file__)
