@@ -1,6 +1,5 @@
 from pathlib import Path
-from typing import Tuple, List, Dict
-
+from typing import Dict, List, Tuple
 
 filepath = Path(__file__).parent / "input.txt"
 
@@ -55,7 +54,7 @@ def parse_instructions_list(
 def move_crate(instruction, filled_stack_dict):
     crate_num, from_stack, to_stack = instruction
 
-    for crate in range(crate_num):
+    for _ in range(crate_num):
         removed_crate = filled_stack_dict[from_stack].pop()
         filled_stack_dict[to_stack].append(removed_crate)
 

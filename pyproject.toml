@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "sre-pairing"
+name = "advent-of-code"
 version = "0.1.0"
-description = "sre-pairing exercise repo."
+description = "advent of code exercise repo."
 authors = ["Alexander Grant <alexanderxgrant@gmail.com>"]
 license = "MIT"
 
@@ -23,6 +23,7 @@ pytest-cov = "^2.12.0"
 pytest-env = "^0.6.2"
 pytest-pythonpath = "^0.7.3"
 safety = "^1.10.3"
+numpy = "^1.24.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

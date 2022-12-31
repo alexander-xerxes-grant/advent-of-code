@@ -7,10 +7,10 @@ from day05.solution1 import (
     create_dict_of_stacks,
     create_indexes,
     fill_stacks,
+    move_crate,
     parse_input,
     parse_instructions_list,
     solver,
-    move_crate,
 )
 
 

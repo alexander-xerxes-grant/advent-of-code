@@ -1,4 +1,4 @@
-from day04.solution1 import parse_input, check_range_in_range, solver
+from day04.solution1 import check_range_in_range, parse_input, solver
 
 
 def test_parse_input():

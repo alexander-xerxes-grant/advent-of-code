@@ -1,8 +1,8 @@
 from day03.solution1 import (
-    find_common_letters,
-    split_items,
     create_value_dict,
+    find_common_letters,
     solver,
+    split_items,
 )
 from day03.values_dict import create_value_dict
 

@@ -1,4 +1,5 @@
-from day06.solution1 import get_chunk, check_unique, solve, find_marker_start
+from .marker_finder import check_unique, find_marker_start, get_chunk
+from .solution1 import solve
 
 
 def test_get_chunk():
