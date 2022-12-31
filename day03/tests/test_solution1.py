@@ -1,7 +1,7 @@
 from day03.solution1 import (
     create_value_dict,
     find_common_letters,
-    solver,
+    solve,
     split_items,
 )
 from day03.values_dict import create_value_dict
@@ -24,7 +24,7 @@ def test_find_common_letters():
     assert find_common_letters(["jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"]) == "L"
 
 
-def test_solver():
+def test_solve():
 
     input_list = [
         "vJrwpWtwJgWrhcsFMMfFFhFp",
@@ -35,5 +35,5 @@ def test_solver():
         "CrZsJsPPZsGzwwsLwLmpwMDw",
     ]
 
-    assert solver(["vJrwpWtwJgWrhcsFMMfFFhFp"]) == 16
-    assert solver(input_list) == 157
+    assert solve(["vJrwpWtwJgWrhcsFMMfFFhFp"]) == 16
+    assert solve(input_list) == 157

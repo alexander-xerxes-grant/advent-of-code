@@ -18,9 +18,7 @@ def find_common_letters(items: str):
     return "".join(compartment_1.intersection(compartment_2))
 
 
-# Use the following line instead if the input is a single line
-# def solver(input: str) -> str:
-def solver(input_list) -> str:
+def solve(input_list) -> str:
     total = 0
     for input in input_list:
         split = split_items(input)
@@ -34,4 +32,4 @@ def solver(input_list) -> str:
 if __name__ == "__main__":
     from shared import run_solver
 
-    run_solver(solver, __file__)
+    run_solver(solve, __file__)
