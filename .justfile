@@ -2,92 +2,52 @@ RED := '\033[0;31m'
 RESET := '\033[0m'
 
 @_default:
-  just --list
+    just --list
 
 _echo_err +msg:
-  #!/usr/bin/env bash
-  echo -e >&2 "{{ RED }}ERROR{{ RESET }}: {{ msg }}"
-
-# Install dependencies
-install:
-  poetry install
+    #!/usr/bin/env bash
+    echo -e >&2 "{{ RED }}ERROR{{ RESET }}: {{ msg }}"
 
 _get_day d:
-  #!/usr/bin/env bash
-  [[ ! "{{ d }}" =~ ^(0?[1-9]|1[0-9]|2[0-5])$ ]] && just _echo_err "Invalid day: {{ d }}" && exit
-  DAY=$([[ {{ d }} =~ ^[1-9]$ ]] && echo "0{{ d }}" || echo "{{ d }}")
-  [[ ! -d "day${DAY}" ]] && just _echo_err "Dir does not exist: day${DAY}/" && exit
+    #!/usr/bin/env bash
+    [[ ! "{{ d }}" =~ ^(0?[1-9]|1[0-9]|2[0-5])$ ]] && just _echo_err "Invalid day: {{ d }}" && exit
+    DAY=$([[ {{ d }} =~ ^[1-9]$ ]] && echo "0{{ d }}" || echo "{{ d }}")
+    [[ -e "day${DAY}" ]] && just _echo_err "Day already exists at ./day${DAY}. Aborting" && exit
 
-  echo "$DAY"
+    echo "$DAY"
 
-# Execute specified solution for the given day
-day d s="all":
-  #!/usr/bin/env bash
-  DAY="$(just _get_day {{ d }})" && [[ -z "$DAY" ]] && exit
+# Create a new folder for the provided day
+create d:
+    #!/usr/bin/env bash
+    DAY="$(just _get_day {{ d }})" && [[ -z "$DAY" ]] && exit
 
-  if [[ "{{ s }}" = "all" ]]; then
-    echo "Solution 1 for day $DAY..."
-    poetry run python -m day${DAY}.solution1
+    # Enable for recursive globbing
+    shopt -s globstar
 
-    echo -e "\nSolution 2 for day $DAY..."
-    poetry run python -m day${DAY}.solution2
-  else
-    [[ ! "{{ s }}" =~ ^[1-2]$ ]] && just _echo_err "Invalid solution number: {{ s }}" && exit
+    echo "Creating folder for $DAY..."
 
-    echo "Solution {{ s }} for day $DAY..."
-    poetry run python -m day${DAY}.solution{{ s }}
-  fi
+    for origin in template/*; do
+    target="${origin/#template\//}/day$DAY"
 
-# Execute tests (or specified solutions' tests) for the given day
-test d s="all":
-  #!/usr/bin/env bash
-  if [[ "{{ d }}" = "shared" ]]; then
-    echo "Running tests for shared code..."
-    poetry run pytest shared
-    exit 0
-  fi
+    [[ -e "$target" ]] && just _echo_err "Target already exists. Aborting" && exit
 
-  DAY="$(just _get_day {{ d }})" && [[ -z "$DAY" ]] && exit
+    if [[ -d "$origin" && ! -L "$origin" ]]; then
+        mkdir -p "$target"
 
-  if [[ "{{ s }}" = "all" ]]; then
-    echo "Running tests for day $DAY..."
-    poetry run pytest day${DAY}
-  else
-    [[ ! "{{ s }}" =~ ^[1-2]$ ]] && just _echo_err "Invalid solution number: {{ s }}" && exit
-    echo "Running tests for day $DAY solution {{ s }}..."
-    poetry run pytest day${DAY}/tests/test_solution{{ s }}.py
-  fi
+        for sub_origin in "${origin}"/**/*; do
+        sub_target="${sub_origin/#$origin/$target}"
 
-# Run all linters
-@lint: flake8 black isort
+        if [[ -d "$sub_origin" ]]; then
+            mkdir -p "$sub_target"
+        fi
+        done
 
-# Run all auto formatting
-@lint-fix: black-fix isort-fix
+        for sub_origin in "${origin}"/**/*; do
+        sub_target="${sub_origin/#$origin/$target}"
 
-# Lint with flake8
-@flake8:
-  poetry run flake8
-
-# Lint with black
-@black:
-  poetry run black --diff --check .
-
-# Auto format with black
-@black-fix:
-  poetry run black .
-
-# Lint with isort
-@isort:
-  poetry run isort --diff --check .
-
-# Auto format with isort
-@isort-fix:
-  poetry run isort .
-
-# Run bandit static checking
-@bandit:
-  poetry run bandit -r . -q -n 3 -x '**/tests/*'
-
-# Run safety against dependencies
-@safety:
-  poetry export -f requirements.txt | poetry run safety check --stdin
+        if [[ ! -d "$sub_origin" ]]; then
+            sed 's/dayDAY/day'"$DAY"'/g' "$sub_origin" > "$sub_target"
+        fi
+        done
+    fi
+    done
