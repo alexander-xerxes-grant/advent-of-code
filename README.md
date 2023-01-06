@@ -1,8 +1,6 @@
 # Advent of Code
 
-
 My repository for Advent of Code 2022 solutions.
-
 
 # Instructions
 
