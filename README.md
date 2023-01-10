@@ -20,11 +20,7 @@ just install
 
 ## 2. Add inputs and test inputs
 
-Edit `../day01/tests/test_input.txt` and `../day01/input.txt`.
-
-## 3. Write some code
-
-Start at `../day01/solution1.py`.
+Edit `../day01/inputs/test_input.txt` and `../day01/inputs/input.txt`.
 
 ## 4. Run the tests
 
