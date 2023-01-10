@@ -20,9 +20,11 @@ just install
 
 ## 2. Add inputs and test inputs
 
-Edit `../day01/inputs/test_input.txt` and `../day01/inputs/input.txt`.
+Add the puzzle input to `../day01/inputs/test_input.txt` and the input given in the example to `../day01/inputs/input.txt`.
 
-## 4. Run the tests
+Add the puzzle description to the `README.md` .
+
+## 3. Write some tests for your first solution and run them to make sure they fail
 
 To run the tests for only the first solution of day 1:
 
@@ -36,6 +38,8 @@ To run for both solutions:
 just test 1
 ```
 
+## 4. Write some code to make your tests pass
+
 ## 5. Run the solution
 
 To run the solution for day 1 part 1:
@@ -44,7 +48,6 @@ To run the solution for day 1 part 1:
 just day 1 1
 ```
 
-## 6. Other useful commands
 
 ### Linting
 
