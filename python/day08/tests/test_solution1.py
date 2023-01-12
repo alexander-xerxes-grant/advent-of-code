@@ -11,7 +11,10 @@ from ..solution1 import (
     check_left,
     check_right,
     check_up,
+    check_visibility,
     make_grid,
+    pad_grid,
+    solve,
     trim_grid,
 )
 
@@ -30,16 +33,6 @@ class TestSolution:
                 [6, 5, 3, 3, 2],
                 [3, 3, 5, 4, 9],
                 [3, 5, 3, 9, 0],
-            ],
-        )
-
-    def test_trim_grid(self, puzzle_input):
-        npt.assert_equal(
-            trim_grid(puzzle_input),
-            [
-                [5, 5, 1],
-                [5, 3, 3],
-                [3, 5, 4],
             ],
         )
 
@@ -98,3 +91,22 @@ class TestSolution:
         current = grid[row][column]
         assert check_down(grid, current, row, column) is True
         assert check_down(grid, current, 1, column) is False
+
+    def test_check_visibility(self):
+        grid = [
+            [9, 9, 1, 9, 9],
+            [9, 9, 1, 9, 9],
+            [1, 1, 3, 1, 1],
+            [9, 9, 1, 9, 9],
+            [9, 9, 1, 9, 9],
+        ]
+        row = 2
+        column = 2
+        current = grid[row][column]
+        assert check_visibility(grid, current, row, column) == 1
+
+    def test_solve(self, puzzle_input):
+
+        solution = solve(puzzle_input)
+
+        assert solution == 21
