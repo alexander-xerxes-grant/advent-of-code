@@ -6,7 +6,7 @@ My repository for Advent of Code 2022 solutions.
 
 Requires
 
-- Python 3.8
+- Python >= 3.8, < 3.11
 - [Poetry](https://github.com/python-poetry/poetry)
 - [Just](https://github.com/casey/just)
 
