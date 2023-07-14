@@ -6,7 +6,7 @@ My repository for Advent of Code 2022 solutions.
 
 Requires
 
-- Python 3.8
+- Python >= 3.8, < 3.11
 - [Poetry](https://github.com/python-poetry/poetry)
 - [Just](https://github.com/casey/just)
 
@@ -20,13 +20,11 @@ just install
 
 ## 2. Add inputs and test inputs
 
-Edit `../day01/tests/test_input.txt` and `../day01/input.txt`.
+Add the puzzle input to `../day01/inputs/test_input.txt` and the input given in the example to `../day01/inputs/input.txt`.
 
-## 3. Write some code
+Add the puzzle description to the `README.md` .
 
-Start at `../day01/solution1.py`.
-
-## 4. Run the tests
+## 3. Write some tests for your first solution and run them to make sure they fail
 
 To run the tests for only the first solution of day 1:
 
@@ -40,6 +38,8 @@ To run for both solutions:
 just test 1
 ```
 
+## 4. Write some code to make your tests pass
+
 ## 5. Run the solution
 
 To run the solution for day 1 part 1:
@@ -48,7 +48,6 @@ To run the solution for day 1 part 1:
 just day 1 1
 ```
 
-## 6. Other useful commands
 
 ### Linting
 
