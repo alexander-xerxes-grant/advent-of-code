@@ -58,19 +58,18 @@ def crane(stacks, instructions_list):
     filled_stack_dict = fill_stacks(stacks, stack_dict)
 
     for instruction in instructions_list:
-
         filled_stack_dict = move_crate(instruction, filled_stack_dict)
 
     return filled_stack_dict
 
 
-def solve(filepath):
-    stacks, instructions_list = parse_input(filepath)
+def solve(input_list):
+    stacks, instructions_list = parse_input(input_list)
     filled_stack_dict = crane(stacks, instructions_list)
     return "".join(stack[-1] for stack in filled_stack_dict.values())
+
 
 if __name__ == "__main__":
     from shared import run_solver
 
     run_solver(solve, __file__)
-

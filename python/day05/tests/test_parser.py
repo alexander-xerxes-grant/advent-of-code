@@ -1,22 +1,18 @@
 from pathlib import Path
 
 import pytest
+from day01 import solution1
 from day05.parser import parse_input
+from shared import get_input
 
 
 class TestParser:
     @pytest.fixture
-    def filepath(self):
-        return Path(__file__).parent.parent / "inputs" / "test_input.txt"
+    def input_list(self):
+        yield get_input(solution1.__file__, "test_input.txt")
 
-    def test_parse_input(self, filepath):
-
-        assert parse_input(filepath) == (
-            ["    [D]    ", "[N] [C]    ", "[Z] [M] [P]", " 1   2   3 "],
-            [
-                "move 1 from 2 to 1",
-                "move 3 from 1 to 3",
-                "move 2 from 2 to 1",
-                "move 1 from 1 to 2",
-            ],
+    def test_parse_input(self, input_list):
+        assert parse_input(input_list) == (
+            ["1000", "2000", "3000"],
+            ["4000", "5000", "6000", "7000", "8000", "9000", "10000"],
         )
