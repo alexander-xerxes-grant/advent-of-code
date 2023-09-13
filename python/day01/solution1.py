@@ -1,10 +1,10 @@
 from typing import Iterable
 
-from .parse_sum import sum_per_elf
+from .parser import parse_input
 
 
-def solve(input: Iterable[str]) -> str:
-    return max(sum_per_elf(input))
+def solve(input_list):
+    return parse_input(input_list)
 
 
 if __name__ == "__main__":

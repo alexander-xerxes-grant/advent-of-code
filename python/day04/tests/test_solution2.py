@@ -1,8 +1,8 @@
 import pytest
-from shared import get_input
 
 from day04 import solution2
 from day04.solution2 import check_range_overlaps, solve
+from shared import get_input
 
 
 class TestSolution:

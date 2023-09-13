@@ -1,8 +1,8 @@
 import pytest
-from shared import get_input
 
 from day01 import solution1
 from day01.solution1 import solve
+from shared import get_input
 
 
 class TestSolution:

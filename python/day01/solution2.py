@@ -1,11 +1,10 @@
 from typing import Iterable
 
-from .parse_sum import sum_per_elf
+from .parser import sum_per_elf
 
 
 def solve(input: Iterable[str]) -> int:
-    elves = sorted(list(sum_per_elf(input)))
-    return sum(elves[-3:])
+    pass
 
 
 if __name__ == "__main__":

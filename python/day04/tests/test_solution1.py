@@ -1,8 +1,8 @@
 import pytest
-from shared import get_input
 
 from day04 import solution1
 from day04.solution1 import check_range_in_range, solve
+from shared import get_input
 
 
 class TestSolution:

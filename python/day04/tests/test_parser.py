@@ -1,8 +1,8 @@
 import pytest
-from shared import get_input
 
 from day04 import parser
 from day04.parser import parse_input
+from shared import get_input
 
 
 class TestParser:

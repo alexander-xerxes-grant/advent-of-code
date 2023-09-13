@@ -1,4 +1,5 @@
 import pytest
+
 from shared import get_input
 
 from .. import solution2
