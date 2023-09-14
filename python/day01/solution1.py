@@ -1,10 +1,9 @@
-from typing import Iterable
-
-from .parser import parse_input
+from .parser import parse_calories
 
 
 def solve(input_list):
-    return parse_input(input_list)
+    list_of_elves = parse_calories(input_list)
+    return max([sum(elf) for elf in list_of_elves])
 
 
 if __name__ == "__main__":
