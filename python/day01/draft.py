@@ -25,10 +25,15 @@ from itertools import groupby
 
 result = [list(g) for k, g in groupby(['1', '2', '3', '', '5'])]
 
-print(result)
+
 
 data = ['1', '69', '420', '', '66']
 
 groups = [list(group) for _, group in groupby(data, lambda x: x == '') if not _]
 
 print(groups)
+
+data = [1, 3, 4, 6, 7, 8]
+
+# groups = [list(group) for _, group in groupby(data, lambda x: x *)]
+# print(groups)

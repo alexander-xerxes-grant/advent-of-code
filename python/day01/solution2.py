@@ -1,7 +1,5 @@
 from typing import Iterable
 
-from .parser import sum_per_elf
-
 
 def solve(input: Iterable[str]) -> int:
     pass
