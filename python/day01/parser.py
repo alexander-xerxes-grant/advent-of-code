@@ -1,6 +1,26 @@
-from itertools import groupby
+from icecream import ic
 
 
-def parse_input(input_list):
+def parse_item(item):
+    try:
+        return int(item)
+    except ValueError:
+        raise ValueError(f"Invalid input: {item}")
 
-    return [[int(item) for item in group] for _, group in groupby(input_list, lambda x: x == '') if not _]
+
+def parse_calories(input_list):
+
+    result = []
+    temp_list = []
+    
+    for item in input_list:
+        if item == '':
+            if len(temp_list) > 0:
+                result.append(temp_list)
+                temp_list = []
+        else:
+            temp_list.append(parse_item(item))
+
+    result.append(temp_list)
+    
+    return result
