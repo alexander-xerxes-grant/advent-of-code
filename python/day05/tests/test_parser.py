@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+
 from day01 import solution1
 from day05.parser import parse_input
 from shared import get_input
