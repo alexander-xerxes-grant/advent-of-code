@@ -1,4 +1,3 @@
-from icecream import ic
 
 
 def parse_item(item):
@@ -12,9 +11,9 @@ def parse_calories(input_list):
 
     result = []
     temp_list = []
-    
+
     for item in input_list:
-        if item == '':
+        if item == "":
             if len(temp_list) > 0:
                 result.append(temp_list)
                 temp_list = []
@@ -22,5 +21,5 @@ def parse_calories(input_list):
             temp_list.append(parse_item(item))
 
     result.append(temp_list)
-    
+
     return result
