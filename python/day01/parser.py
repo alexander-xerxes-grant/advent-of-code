@@ -1,5 +1,3 @@
-
-
 def parse_item(item):
     try:
         return int(item)

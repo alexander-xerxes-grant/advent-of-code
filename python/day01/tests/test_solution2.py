@@ -11,7 +11,6 @@ class TestSolution:
         yield get_input(solution2.__file__, "test_input.txt")
 
     def test_solve(self, input):
-        pass
-        # solution = solve(input)
+        solution = solve(input)
 
-        # assert solution == 45000
+        assert solution == 45000
