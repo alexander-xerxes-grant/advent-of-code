@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+
 from day05.solution1 import (
     crane,
     create_dict_of_stacks,

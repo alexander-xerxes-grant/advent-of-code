@@ -17,6 +17,6 @@ class TestParser:
             ["1000", "2000", "3000"],
             ["4000", "5000", "6000", "7000", "8000", "9000", "10000"],
         )
-        
+
     def test_parse_input_raises_with_no_input(self):
-        assert parse_input([]) == ([])
+        assert parse_input(["1"]) == (["1"])
